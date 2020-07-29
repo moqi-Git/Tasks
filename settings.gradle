@@ -1,0 +1,4 @@
+include ':common'
+include ':views'
+include ':app'
+rootProject.name = "Codelab"
