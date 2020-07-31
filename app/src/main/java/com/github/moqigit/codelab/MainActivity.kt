@@ -1,8 +1,10 @@
 package com.github.moqigit.codelab
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.github.moqigit.codelab.homepage.neteasemusic.NeteaseMusicHomePageAct
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startAnim()
+//        startAnim()
+
+        naviToPage(NeteaseMusicHomePageAct::class.java)
     }
 
     private fun startAnim(){
@@ -20,6 +24,13 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             startAnim()
         }, 144)
+    }
+
+    private fun naviToPage(act: Class<*>){
+        val i = Intent(this, act)
+
+        startActivity(i)
+        finish()
     }
 
     override fun onDestroy() {
