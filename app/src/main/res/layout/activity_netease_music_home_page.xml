@@ -27,11 +27,14 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/nmhp_tab_layout"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/nmhp_title_height"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:tabIndicatorHeight="0dp"
+            app:tabTextColor="#666"
+            app:tabSelectedTextColor="#333">
 
             <!--            <com.google.android.material.tabs.TabItem-->
             <!--                android:layout_width="wrap_content"-->

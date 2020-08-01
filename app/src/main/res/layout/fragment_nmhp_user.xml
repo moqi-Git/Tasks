@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.moqigit.views.layout.NestedAdaptLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#B80000">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nmhp_title_height"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+                <ImageView
+                    android:id="@+id/nmhp_user_info_avatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                
+                <TextView
+                    android:id="@+id/nmhp_user_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/nmhp_user_info_avatar"
+                    app:layout_constraintTop_toTopOf="@id/nmhp_user_info_avatar"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/nmhp_user_info_name"
+                    app:layout_constraintTop_toBottomOf="@id/nmhp_user_info_name"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/nmhp_user_info_tag"
+                    android:textColor="#fff"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/nmhp_user_info_name"
+                    app:layout_constraintBottom_toBottomOf="@id/nmhp_user_info_name"
+                    android:textColor="#999"
+                    android:id="@+id/nmhp_user_info_vip"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nmhp_user_info_avatar"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="12dp">
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/bg_rect_10_0_fff">
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nmhp_user_tv_long"/>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</com.github.moqigit.views.layout.NestedAdaptLinearLayout>
