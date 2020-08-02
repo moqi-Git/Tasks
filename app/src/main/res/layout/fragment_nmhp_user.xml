@@ -2,6 +2,7 @@
 <com.github.moqigit.views.layout.NestedAdaptLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/nmhp_nested_root"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -13,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#B80000">
+            android:background="#B80000"
+            android:id="@+id/nmhp_user_info_layout">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nmhp_title_height"/>

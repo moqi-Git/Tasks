@@ -28,8 +28,14 @@ class UserFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         insertFakeData()
+        initEvent()
     }
 
+    private fun initEvent(){
+        nmhp_user_info_layout.post {
+            nmhp_nested_root.setKeepDistance(nmhp_user_info_layout.height.toFloat())
+        }
+    }
 
     private fun insertFakeData(){
         nmhp_user_info_name.text = "万俟霜风"
