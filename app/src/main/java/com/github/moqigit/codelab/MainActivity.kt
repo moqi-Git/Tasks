@@ -4,26 +4,31 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import com.github.moqigit.codelab.adapter.MainAdapter
 import com.github.moqigit.codelab.homepage.neteasemusic.NeteaseMusicHomePageAct
+import com.github.moqigit.codelab.ui.test.AudioWaveTestAct
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        startAnim()
-
-        naviToPage(NeteaseMusicHomePageAct::class.java)
-    }
-
-    private fun startAnim(){
-        awv.pushValue(Math.random())
-        handler.postDelayed({
-            startAnim()
-        }, 144)
+        main_rv_entry.layoutManager = GridLayoutManager(this, 2)
+        main_rv_entry.adapter = MainAdapter(arrayListOf("波","网","空","空")).apply {
+            onItemClickListener = { p ->
+                when(p){
+                    1 -> { naviToPage(NeteaseMusicHomePageAct::class.java) }
+                    0 -> { naviToPage(AudioWaveTestAct::class.java) }
+                    else -> {
+                        Toast.makeText(this@MainActivity, "未实现", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
     }
 
     private fun naviToPage(act: Class<*>){
@@ -35,6 +40,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
     }
 }

@@ -79,6 +79,7 @@ class AudioWaveView @JvmOverloads constructor(
 
     fun pushValue(value: Double){
         val height = (finalHeight * value).toInt()
+        kLogE("height = $height")
         waveList.offer(height)
         invalidate()
     }
