@@ -33,7 +33,7 @@ class UserFragment: Fragment() {
 
     private fun initEvent(){
         nmhp_user_info_layout.post {
-            nmhp_nested_root.setKeepDistance(nmhp_user_info_layout.height.toFloat())
+            nmhp_nested_root.setKeepDistance((nmhp_user_info_content.top - nmhp_user_info_ph_title.bottom).toFloat())
         }
     }
 

@@ -30,6 +30,21 @@ class NestedAdaptLinearLayout @JvmOverloads constructor(
 
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
 //        kLogE("onNestedPreScroll: $target, $dx, $dy, ${consumed.toLog()}, $type")
+//        kLogE("onNestedPreScroll: $scrollY, $mCanScrollDistance")
+        if (dy > 0){
+            kLogE("上")
+            if (scrollY < mCanScrollDistance){
+                val remain = (mCanScrollDistance - scrollY).toInt()
+                if (remain > dy){
+                    scrollBy(0, dy)
+                    consumed[1] += dy
+                } else {
+                    scrollBy(0, remain)
+                    consumed[1] += remain
+                }
+            }
+
+        }
     }
 
     override fun onNestedScroll(
@@ -41,43 +56,18 @@ class NestedAdaptLinearLayout @JvmOverloads constructor(
         type: Int,
         consumed: IntArray
     ) {
-        kLogE("onNestedScroll1: $dxConsumed, $dyConsumed, $dxUnconsumed, $dyUnconsumed, $type, ${consumed.toLog()}")
-        kLogE("onNestedScroll1: $scrollY, $mCanScrollDistance")
+//        kLogE("onNestedScroll1: $dxConsumed, $dyConsumed, $dxUnconsumed, $dyUnconsumed, $type, ${consumed.toLog()}")
+//        kLogE("onNestedScroll1: $scrollY, $mCanScrollDistance")
         if (dyUnconsumed < 0){
             kLogE("下")
             if (scrollY > 0){
-                scrollBy(0, dyUnconsumed)
-                consumed[1] += dyUnconsumed
-                scrollBy(0, dyConsumed)
-                consumed[1] += dyConsumed
-            }
-//            if (scrollY < 0){
-//                val remain = scrollY
-//                if (dyUnconsumed <= remain){
-//                    scrollBy(0, dyUnconsumed)
-//                    consumed[1] += dyUnconsumed
-//                } else {
-//                    scrollBy(0, remain.toInt())
-//                    consumed[1] += remain.toInt()
-//                }
-//            }
-
-        }
-        if (dyUnconsumed > 0 || dyConsumed > 0){
-            kLogE("上")
-            if (scrollY < mCanScrollDistance){
-                scrollBy(0, dyUnconsumed)
-                consumed[1] += dyUnconsumed
-                scrollBy(0, dyConsumed)
-                consumed[1] += dyConsumed
-//                val remain = mCanScrollDistance + scrollY
-//                if (dyUnconsumed <= remain){
-//                    scrollBy(0, dyUnconsumed)
-//                    consumed[1] += dyUnconsumed
-//                } else {
-//                    scrollBy(0, remain.toInt())
-//                    consumed[1] += remain.toInt()
-//                }
+                if (scrollY > -dyUnconsumed){
+                    scrollBy(0, dyUnconsumed)
+                    consumed[1] += dyUnconsumed
+                } else {
+                    scrollBy(0, -scrollY)
+                    consumed[1] += -scrollY
+                }
             }
 
         }

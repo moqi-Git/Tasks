@@ -17,6 +17,7 @@
             android:background="#B80000"
             android:id="@+id/nmhp_user_info_layout">
             <View
+                android:id="@+id/nmhp_user_info_ph_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nmhp_title_height"/>
 
@@ -78,6 +79,7 @@
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nmhp_user_info_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
