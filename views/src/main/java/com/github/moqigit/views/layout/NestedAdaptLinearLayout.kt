@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParent3
 import com.github.moqigit.common.kLogE
 import com.github.moqigit.common.toLog
@@ -14,9 +15,10 @@ import com.github.moqigit.common.toLog
  */
 class NestedAdaptLinearLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr),NestedScrollingParent3 {
+) : LinearLayout(context, attrs, defStyleAttr),NestedScrollingParent3, NestedScrollingParent {
 
     private var mCanScrollDistance = 40f
+    private val mNestedConsumedArray = IntArray(2)
 
 
     override fun onNestedScrollAccepted(child: View, target: View, axes: Int, type: Int) {
@@ -58,6 +60,25 @@ class NestedAdaptLinearLayout @JvmOverloads constructor(
     ) {
 //        kLogE("onNestedScroll1: $dxConsumed, $dyConsumed, $dxUnconsumed, $dyUnconsumed, $type, ${consumed.toLog()}")
 //        kLogE("onNestedScroll1: $scrollY, $mCanScrollDistance")
+        onNestedScrollInternal(dyConsumed, dyUnconsumed, consumed)
+    }
+
+    override fun onNestedScroll(
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int
+    ) {
+        onNestedScrollInternal(dyConsumed, dyUnconsumed, mNestedConsumedArray)
+    }
+
+    override fun onStopNestedScroll(target: View, type: Int) {
+        kLogE("onStopNestedScroll: $target, $type")
+    }
+
+    private fun onNestedScrollInternal(dyConsumed: Int, dyUnconsumed: Int, consumed: IntArray){
         if (dyUnconsumed < 0){
             kLogE("下")
             if (scrollY > 0){
@@ -71,25 +92,21 @@ class NestedAdaptLinearLayout @JvmOverloads constructor(
             }
 
         }
-
     }
-
-    override fun onNestedScroll(
-        target: View,
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        type: Int
-    ) {
-//        kLogE("onNestedScroll2: $target, $dxConsumed, $dyConsumed, $dxUnconsumed, $dyUnconsumed, $type")
-    }
-
-    override fun onStopNestedScroll(target: View, type: Int) {
-        kLogE("onStopNestedScroll: $target, $type")
-    }
-
     fun setKeepDistance(distance: Float){
         mCanScrollDistance = distance
+    }
+
+    override fun onNestedPreFling(target: View, velocityX: Float, velocityY: Float): Boolean {
+        return false
+    }
+
+    override fun onNestedFling(
+        target: View,
+        velocityX: Float,
+        velocityY: Float,
+        consumed: Boolean
+    ): Boolean {
+        return false
     }
 }
