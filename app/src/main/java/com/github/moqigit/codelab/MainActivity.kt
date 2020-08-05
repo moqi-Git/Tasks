@@ -42,3 +42,9 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 }
+
+/**
+ * todo list:
+ * 1. 添加 DrawerLayout，实现左滑显示菜单
+ * 2. 添加 具体的 RecyclerView（至少两个）
+ */
