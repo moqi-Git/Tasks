@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.moqigit.codelab.R
+import com.github.moqigit.common.kLogE
 import kotlinx.android.synthetic.main.fragment_nmhp_user.*
 
 /**
@@ -32,8 +33,14 @@ class UserFragment: Fragment() {
     }
 
     private fun initEvent(){
+        // setup nested scroll
         nmhp_user_info_layout.post {
-            nmhp_nested_root.setKeepDistance((nmhp_user_info_content.top - nmhp_user_info_ph_title.bottom).toFloat())
+            val scrollDistance = nmhp_user_info_content.top - nmhp_user_info_ph_title.bottom
+            nmhp_nested_root.setKeepDistance(scrollDistance.toFloat())
+
+            val params = nmhp_nested_root.layoutParams
+            params.height = nmhp_nested_root.height + scrollDistance
+            nmhp_nested_root.layoutParams = params
         }
     }
 

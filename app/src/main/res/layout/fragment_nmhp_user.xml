@@ -84,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:paddingTop="10dp"
+            android:fillViewport="true"
             android:background="@drawable/bg_rect_10_0_fff">
 
 <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
