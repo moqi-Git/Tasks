@@ -7,12 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.moqigit.codelab.R
 import kotlinx.android.synthetic.main.item_main_grid.view.*
 
-class MainAdapter(private val mList: List<String>): RecyclerView.Adapter<MainAdapter.EmptyViewHolder>() {
+class MainAdapter(private val mList: List<String>): RecyclerView.Adapter<EmptyViewHolder>() {
     var onItemClickListener: ((position: Int) -> Unit)? = null
-
-    class EmptyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmptyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main_grid, parent, false)

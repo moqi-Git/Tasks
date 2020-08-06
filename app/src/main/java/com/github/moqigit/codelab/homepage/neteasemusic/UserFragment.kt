@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.moqigit.codelab.R
+import com.github.moqigit.codelab.adapter.UserFavAdapter
+import com.github.moqigit.codelab.model.bean.UserFavItemBean
 import com.github.moqigit.common.kLogE
 import kotlinx.android.synthetic.main.fragment_nmhp_user.*
 
@@ -54,10 +57,15 @@ class UserFragment: Fragment() {
             .apply(RequestOptions().circleCrop())
             .into(nmhp_user_info_avatar)
 
-        val sb = StringBuilder()
-        repeat(80){
-            sb.append(it).append("\n")
-        }
-        nmhp_user_tv_long.text = sb.toString()
+        val favList = arrayListOf(
+            UserFavItemBean(R.drawable.ic_chat, "标题1", "开启自信之门"),
+            UserFavItemBean(R.drawable.ic_chat, "标题1", "开启自信之门"),
+            UserFavItemBean(R.drawable.ic_chat, "标题1", "开启自信之门"),
+            UserFavItemBean(R.drawable.ic_chat, "标题1", "开启自信之门"),
+            UserFavItemBean(R.drawable.ic_chat, "标题1", "开启自信之门")
+        )
+        val userFavAdapter = UserFavAdapter(favList)
+        nmhp_user_info_rv_mine.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        nmhp_user_info_rv_mine.adapter = userFavAdapter
     }
 }
