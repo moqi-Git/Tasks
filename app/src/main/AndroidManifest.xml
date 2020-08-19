@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.test.TimeBroadcastTestAct"></activity>
+        <activity android:name=".ui.test.QrCodeTestActivity"></activity>
+        <activity android:name=".ui.test.TimeBroadcastTestAct" />
         <activity android:name=".ui.test.AudioWaveTestAct" />
         <activity
             android:name=".homepage.neteasemusic.NeteaseMusicHomePageAct"
