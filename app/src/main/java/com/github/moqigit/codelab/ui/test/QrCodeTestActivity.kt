@@ -22,6 +22,8 @@ class QrCodeTestActivity : AppCompatActivity() {
         Glide.with(this)
             .load(bitmap)
             .into(qr_test_iv)
+
+
     }
 
     private fun createQRCode(content: String, width: Int, height: Int): Bitmap{
