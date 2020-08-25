@@ -1,10 +1,10 @@
 package com.github.moqigit.codelab
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.moqigit.codelab.adapter.MainAdapter
 import com.github.moqigit.codelab.homepage.neteasemusic.NeteaseMusicHomePageAct
@@ -22,14 +22,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         main_rv_entry.layoutManager = GridLayoutManager(this, 2)
-        main_rv_entry.adapter = MainAdapter(arrayListOf("波","网","时","码","词")).apply {
+        main_rv_entry.adapter = MainAdapter(arrayListOf("波", "网", "时", "码", "词", "转")).apply {
             onItemClickListener = { p ->
                 when(p){
-                    0 -> { naviToPage(AudioWaveTestAct::class.java) }
-                    1 -> { naviToPage(NeteaseMusicHomePageAct::class.java) }
-                    2 -> { naviToPage(TimeBroadcastTestAct::class.java ) }
-                    3 -> { naviToPage(QrCodeTestActivity::class.java) }
-                    4 -> { naviToPage(WordsLearningAct::class.java) }
+                    0 -> {
+                        naviToPage(AudioWaveTestAct::class.java)
+                    }
+                    1 -> {
+                        naviToPage(NeteaseMusicHomePageAct::class.java)
+                    }
+                    2 -> {
+                        naviToPage(TimeBroadcastTestAct::class.java)
+                    }
+                    3 -> {
+                        naviToPage(QrCodeTestActivity::class.java)
+                    }
+                    4 -> {
+                        naviToPage(WordsLearningAct::class.java)
+                    }
+                    5 -> {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("ekwing://wisdomclassstu/container?type=main"))
+//                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("ekwing://wisdomclassstu/main?from=launcher"))
+                        startActivity(intent)
+                    }
                     else -> {
                         Toast.makeText(this@MainActivity, "未实现", Toast.LENGTH_SHORT).show()
                     }
