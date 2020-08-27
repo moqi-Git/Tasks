@@ -1,8 +1,12 @@
 package com.github.moqigit.codelab.plugins.http
 
 import android.os.Build
+import com.github.moqigit.codelab.model.bean.MapiEntity
 import okhttp3.*
+import retrofit2.Converter
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 
 /**
@@ -10,19 +14,21 @@ import java.util.concurrent.TimeUnit
  * created by reol at 2020/8/26
  */
 object XRetrofit {
-
+//http://mapi.ekwing.com/student/user/forgetpwd
     private var retrofit: Retrofit
 
     init {
         val client = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
             .addInterceptor(AddPostParamsInterceptor())
-            .addInterceptor(TokenErrorInterceptor())
+//            .addInterceptor(TokenErrorInterceptor())
             .build()
 
         retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl("")
+            .baseUrl("http://mapi.ekwing.com/")
+            .addConverterFactory(StringConverter.Factory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
@@ -59,5 +65,55 @@ class TokenErrorInterceptor: Interceptor{
         // 解析外层包装，处理全局异常
         val newResponse = Response.Builder().build()
         return newResponse
+    }
+}
+
+class StringConverter: Converter<ResponseBody, String>{
+
+    override fun convert(value: ResponseBody): String {
+        return value.string()
+    }
+
+    class Factory private constructor() : Converter.Factory() {
+
+        companion object{
+            @JvmStatic
+            fun create(): Factory{
+                return Factory()
+            }
+        }
+
+        override fun responseBodyConverter(
+            type: Type,
+            annotations: Array<Annotation>,
+            retrofit: Retrofit
+        ): Converter<ResponseBody, *>? {
+            if (type == String::class.java){
+                return StringConverter()
+            }
+            return null
+        }
+
+        override fun requestBodyConverter(
+            type: Type,
+            parameterAnnotations: Array<Annotation>,
+            methodAnnotations: Array<Annotation>,
+            retrofit: Retrofit
+        ): Converter<*, RequestBody>? {
+            return super.requestBodyConverter(
+                type,
+                parameterAnnotations,
+                methodAnnotations,
+                retrofit
+            )
+        }
+
+        override fun stringConverter(
+            type: Type,
+            annotations: Array<Annotation>,
+            retrofit: Retrofit
+        ): Converter<*, String>? {
+            return super.stringConverter(type, annotations, retrofit)
+        }
     }
 }

@@ -9,11 +9,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.moqigit.codelab.adapter.MainAdapter
 import com.github.moqigit.codelab.homepage.neteasemusic.NeteaseMusicHomePageAct
 import com.github.moqigit.codelab.manager.ClosureTest
+import com.github.moqigit.codelab.model.bean.MapiEntity
+import com.github.moqigit.codelab.plugins.http.TestApiService
+import com.github.moqigit.codelab.plugins.http.XRetrofit
 import com.github.moqigit.codelab.ui.test.AudioWaveTestAct
 import com.github.moqigit.codelab.ui.test.QrCodeTestActivity
 import com.github.moqigit.codelab.ui.test.TimeBroadcastTestAct
 import com.github.moqigit.codelab.words.WordsLearningAct
+import com.github.moqigit.common.kLogE
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,19 +60,31 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        ClosureTest.start()
+        XRetrofit.createService(TestApiService::class.java)
+            .requireVerificationCode("17600975275")
+            .enqueue(object : Callback<MapiEntity> {
+                override fun onResponse(
+                    call: Call<MapiEntity>,
+                    response: Response<MapiEntity>
+                ) {
+                    val origin = response.body()
+                    kLogE("origin data = $origin")
+                }
+
+                override fun onFailure(call: Call<MapiEntity>, t: Throwable) {
+                    kLogE("error = ${t.message}; reason = ${t.cause}")
+                }
+            })
     }
 
     private fun naviToPage(act: Class<*>){
         val i = Intent(this, act)
-
         startActivity(i)
         finish()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        ClosureTest.stop()
     }
 }
 
