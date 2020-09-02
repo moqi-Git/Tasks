@@ -38,6 +38,7 @@ dependencies {
     // interenal
     implementation project(':views')
     implementation project(':common')
+    implementation project(':xplayer')
 
 
     // to use
@@ -49,4 +50,5 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation "androidx.startup:startup-runtime:1.0.0-alpha02"
 }

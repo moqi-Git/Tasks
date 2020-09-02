@@ -33,7 +33,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    implementation project(':common')
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
 
 }
