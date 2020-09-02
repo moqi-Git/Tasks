@@ -45,6 +45,18 @@ class UserFragment: Fragment() {
             params.height = nmhp_nested_root.height + scrollDistance
             nmhp_nested_root.layoutParams = params
         }
+
+        nmhp_user_info_avatar.setOnClickListener {
+            naviTo(MusicFragment())
+        }
+    }
+
+    protected fun naviTo(fragment: Fragment, canBack: Boolean = true){
+        val act = activity?:return
+        val trans = act.supportFragmentManager.beginTransaction()
+        trans.add(R.id.container, fragment, fragment.tag)
+        if (canBack) trans.addToBackStack(fragment.tag)
+        trans.commit()
     }
 
     private fun insertFakeData(){

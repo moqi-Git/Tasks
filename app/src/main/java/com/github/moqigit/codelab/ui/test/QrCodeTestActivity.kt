@@ -40,4 +40,5 @@ class QrCodeTestActivity : AppCompatActivity() {
         }
         return Bitmap.createBitmap(pixels, bm.width, bm.height, Bitmap.Config.RGB_565)
     }
+
 }

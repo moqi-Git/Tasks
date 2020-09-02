@@ -1,3 +1,4 @@
+include ':xplayer'
 include ':common'
 include ':views'
 include ':app'
