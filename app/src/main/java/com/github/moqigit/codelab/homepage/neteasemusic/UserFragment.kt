@@ -1,10 +1,15 @@
 package com.github.moqigit.codelab.homepage.neteasemusic
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -49,6 +54,33 @@ class UserFragment: Fragment() {
         nmhp_user_info_avatar.setOnClickListener {
             naviTo(MusicFragment())
         }
+
+        val vm = ViewModelProvider(requireActivity()).get(NTestViewModel::class.java)
+        vm.fakeData.observe(viewLifecycleOwner){
+                Log.e("asdfg", "fakeData = $it")
+            }
+        Handler().postDelayed({ vm.start() }, 4000)
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("asdfg", "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("asdfg", "onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("asdfg", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("asdfg", "onDestroy")
     }
 
     protected fun naviTo(fragment: Fragment, canBack: Boolean = true){
