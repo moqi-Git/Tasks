@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.video.VideoTestAct"></activity>
+        <activity android:name=".ui.test.TouchTestActivity"></activity>
+        <activity android:name=".ui.video.VideoTestAct" />
         <activity android:name=".ui.test.IntentTestActivity" />
         <activity android:name=".words.WordsLearningAct" />
         <activity android:name=".ui.test.QrCodeTestActivity" />

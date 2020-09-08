@@ -15,6 +15,7 @@ import com.github.moqigit.codelab.plugins.http.XRetrofit
 import com.github.moqigit.codelab.ui.test.AudioWaveTestAct
 import com.github.moqigit.codelab.ui.test.QrCodeTestActivity
 import com.github.moqigit.codelab.ui.test.TimeBroadcastTestAct
+import com.github.moqigit.codelab.ui.test.TouchTestActivity
 import com.github.moqigit.codelab.ui.video.VideoTestAct
 import com.github.moqigit.codelab.words.WordsLearningAct
 import com.github.moqigit.common.kLogE
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         main_rv_entry.layoutManager = GridLayoutManager(this, 2)
-        main_rv_entry.adapter = MainAdapter(arrayListOf("波", "网", "时", "码", "词", "转", "影")).apply {
+        main_rv_entry.adapter = MainAdapter(arrayListOf("波", "网", "时", "码", "词", "转", "影", "层")).apply {
             onItemClickListener = { p ->
                 when(p){
                     0 -> {
@@ -58,6 +59,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     6 -> {
                         naviToPage(VideoTestAct::class.java)
+                    }
+                    7 -> {
+                        naviToPage(TouchTestActivity::class.java)
                     }
                     else -> {
                         Toast.makeText(this@MainActivity, "未实现", Toast.LENGTH_SHORT).show()
@@ -87,10 +91,6 @@ class MainActivity : AppCompatActivity() {
         val i = Intent(this, act)
         startActivity(i)
         finish()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }
 
